@@ -1,0 +1,16 @@
+wuub.dev {
+	respond <<HTML
+		<html>
+		  <head><title>Foo</title></head>
+		  <body>Foo</body>
+		</html>
+		HTML 200
+}
+
+
+dockge.wuub.dev {
+	basic_auth {
+		wuub  $2y$10$KGMYUeFSrVxOhp77d/OEze9V9GiABK.lW6NoGmzCM86.sCsREvsvS
+	}
+	reverse_proxy 127.0.0.1:5001
+}
