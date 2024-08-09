@@ -30,5 +30,5 @@ services:
     container_name: "simple-service"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.whoami.rule=Host(`188.245.78.105`)"
+      - "traefik.http.routers.whoami.rule=Host(`whoami.wuub.dev`)"
       - "traefik.http.routers.whoami.entrypoints=web"
