@@ -8,7 +8,8 @@ services:
     container_name: "traefik"
     command:
       #- "--log.level=DEBUG"
-      # - "--api.insecure=true"
+      - "--api.insecure=true"
+      - "--api.dashboard=true"
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
       - "--entrypoints.web.address=:80"
@@ -31,6 +32,12 @@ services:
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
       - "letsencrypt_data:/letsencrypt"
+    labels:
+      # - "traefik.http.routers.whoami.tls=true"
+      - "traefik.http.routers.traefik.rule=Host(`traefik.wuub.dev`)"
+      - "traefik.http.routers.traefik.service=api@internal"
+      - "traefik.http.routers.traefik.entrypoints=web"
+      - "traefik.http.services.api.loadbalancer.server.port=8080"
 
   whoami:
     image: "containous/whoami"
