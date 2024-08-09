@@ -34,10 +34,9 @@ services:
       - "letsencrypt_data:/letsencrypt"
     labels:
       # - "traefik.http.routers.whoami.tls=true"
-      - "traefik.http.routers.traefik.rule=Host(`traefik.wuub.dev`)"
+      - "traefik.http.routers.traefik.rule=Host(`traefik.wuub.dev`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))"
       - "traefik.http.routers.traefik.service=api@internal"
       - "traefik.http.routers.traefik.entrypoints=web"
-      - "traefik.http.services.api.loadbalancer.server.port=8080"
 
   whoami:
     image: "containous/whoami"
