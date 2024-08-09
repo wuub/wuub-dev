@@ -16,6 +16,7 @@ services:
       - "--entrypoints.mqtt.address=:1883"
       - "--entrypoints.mqtt_websocket.address=:9001"
     ports:
+      - "80:80"
       - "443:443"
       - "8080:8080"
       - "9001:9001"
@@ -28,5 +29,5 @@ services:
     container_name: "simple-service"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.whoami.rule=HostSNI(`whoami.wuub.dev`)"
-      - "traefik.http.routers.whoami.entrypoints=websecure"
+      - "traefik.http.routers.whoami.rule=Host(`whoami.wuub.dev`)"
+      - "traefik.http.routers.whoami.entrypoints=web"
