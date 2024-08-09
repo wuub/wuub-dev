@@ -18,7 +18,10 @@ services:
       - "--certificatesresolvers.le-staging.acme.tlschallenge=true"
       - "--certificatesresolvers.le-staging.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory"
       - "--certificatesresolvers.le-staging.acme.email=letsencrypt@wuub.net"
-      - "--certificatesresolvers.le-staging.acme.storage=/letsencrypt/acme.json"
+      - "--certificatesresolvers.le-staging.acme.storage=/letsencrypt/acme-staging.json"
+      - "--certificatesresolvers.le-prod.acme.tlschallenge=true"
+      - "--certificatesresolvers.le-prod.acme.email=letsencrypt@wuub.net"
+      - "--certificatesresolvers.le-prod.acme.storage=/letsencrypt/acme-prod.json"
     ports:
       - "80:80"
       - "443:443"
@@ -37,7 +40,7 @@ services:
       - "traefik.http.routers.whoami.rule=Host(`whoami.wuub.dev`)"
       - "traefik.http.routers.whoami.tls=true"
       - "traefik.http.routers.whoami.entrypoints=websecure"
-      - "traefik.http.routers.whoami.tls.certresolver=le-staging"
+      - "traefik.http.routers.whoami.tls.certresolver=le-prod"
 
 volumes:
   letsencrypt_data: 
