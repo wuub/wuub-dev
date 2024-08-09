@@ -15,6 +15,10 @@ services:
       - "--entrypoints.websecure.address=:443"
       - "--entrypoints.mqtt.address=:1883"
       - "--entrypoints.mqtt_websocket.address=:9001"
+      - "--certificatesresolvers.le.acme.tlschallenge=true"
+      - "--certificatesresolvers.le.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory"
+      - "--certificatesresolvers.le.acme.email=postmaster@example.com"
+      - "--certificatesresolvers.le.acme.storage=/letsencrypt/acme.json"
     ports:
       - "80:80"
       - "443:443"
@@ -23,6 +27,7 @@ services:
       - "1883:1883"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "letsencrypt_data:/letsencrypt"
 
   whoami:
     image: "containous/whoami"
@@ -31,3 +36,6 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.whoami.rule=Host(`whoami.wuub.dev`)"
       - "traefik.http.routers.whoami.entrypoints=web"
+
+volumes:
+  letsencrypt_data: 
