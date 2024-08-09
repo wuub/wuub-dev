@@ -36,9 +36,9 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.traefik.tls=true"
       - "traefik.http.routers.traefik.tls.certresolver=le-prod"
-      - "traefik.http.routers.traefik.rule=Host(`traefik.wuub.dev`)"
+      - "traefik.http.routers.traefik.rule=Host(`traefik.wuub.dev`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))"
       - "traefik.http.routers.traefik.service=api@internal"
-      - "traefik.http.routers.traefik.entrypoints=web"
+      - "traefik.http.routers.traefik.entrypoints=websecure"
       - "traefik.http.routers.traefik.middlewares=traefik-auth"
       - "traefik.http.middlewares.traefik-auth.basicauth.users=wuub:$$2y$$05$$Csy8OPkqdRZMPJFgzkUT6.N/Aa.WVvAFwN5NVaaEgDSRuVPvMKhai"
 
