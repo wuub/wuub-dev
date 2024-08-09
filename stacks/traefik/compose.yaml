@@ -15,10 +15,10 @@ services:
       - "--entrypoints.websecure.address=:443"
       - "--entrypoints.mqtt.address=:1883"
       - "--entrypoints.mqtt_websocket.address=:9001"
-      - "--certificatesresolvers.le.acme.tlschallenge=true"
-      - "--certificatesresolvers.le.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory"
-      - "--certificatesresolvers.le.acme.email=letsencrypt@wuub.net"
-      - "--certificatesresolvers.le.acme.storage=/letsencrypt/acme.json"
+      - "--certificatesresolvers.le-staging.acme.tlschallenge=true"
+      - "--certificatesresolvers.le-staging.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory"
+      - "--certificatesresolvers.le-staging.acme.email=letsencrypt@wuub.net"
+      - "--certificatesresolvers.le-staging.acme.storage=/letsencrypt/acme.json"
     ports:
       - "80:80"
       - "443:443"
@@ -37,7 +37,7 @@ services:
       - "traefik.http.routers.whoami.rule=Host(`whoami.wuub.dev`)"
       - "traefik.http.routers.whoami.tls=true"
       - "traefik.http.routers.whoami.entrypoints=websecure"
-      - "traefik.http.routers.whoami.tls.certresolver=le"
+      - "traefik.http.routers.whoami.tls.certresolver=le-staging"
 
 volumes:
   letsencrypt_data: 
