@@ -34,7 +34,8 @@ services:
       - "letsencrypt_data:/letsencrypt"
     labels:
       - "traefik.enable=true"
-      # - "traefik.http.routers.traefik.tls=true"
+      - "traefik.http.routers.traefik.tls=true"
+      - "traefik.http.routers.traefik.tls.certresolver=le-prod"
       - "traefik.http.routers.traefik.rule=Host(`traefik.wuub.dev`)"
       - "traefik.http.routers.traefik.service=api@internal"
       - "traefik.http.routers.traefik.entrypoints=web"
