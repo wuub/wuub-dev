@@ -8,11 +8,12 @@ services:
     container_name: "traefik"
     command:
       #- "--log.level=DEBUG"
-      - "--api.insecure=true"
+      - "--global.sendAnonymousUsage"
+      - "--api=true"
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
       - "--entrypoints.web.address=:80"
-      - "--entrypoints.websecure.address=:80"
+      - "--entrypoints.websecure.address=:443"
       - "--entrypoints.mqtt.address=:1883"
       - "--entrypoints.mqtt_websocket.address=:9001"
     ports:
@@ -29,5 +30,5 @@ services:
     container_name: "simple-service"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.whoami.rule=Host(`whoami.localhost`)"
+      - "traefik.http.routers.whoami.rule=Host(`188.245.78.105`)"
       - "traefik.http.routers.whoami.entrypoints=web"
