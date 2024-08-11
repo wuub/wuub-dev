@@ -20,7 +20,6 @@ services:
       - "lldap_data:/data"
     env_file: "../../secrets/LLDAP_ENV_FILE.plain"
     networks:
-      - ldap
       - traefik
     labels:
       - "traefik.enable=true"
