@@ -2,7 +2,7 @@ PLAIN=$(wildcard *.plain)
 SECRET=$(PLAIN:=.gpg)
 
 decrypt:
-	gpg --batch --yes --passphrase-file .encryption_password  *.gpg
+	gpg --decrypt --batch --yes --passphrase-file .encryption_password  *.gpg
 
 encrypt: $(SECRET) 
 
