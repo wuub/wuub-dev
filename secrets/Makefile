@@ -7,7 +7,7 @@ DECRYPT_PLAINS=$(wildcard *.gpg)
 decrypt: $(basename $(DECRYPT_PLAINS)) 
 
 %.plain: %.plain.gpg .encryption_password
-	gpg --batch --yes --passphrase-file .encryption_password  $@.gpg	
+	gpg --decrypt --out $@ --batch --yes --passphrase-file .encryption_password  $@.gpg	
 
 encrypt: $(ENCRYPT_SECRETS) 
 
