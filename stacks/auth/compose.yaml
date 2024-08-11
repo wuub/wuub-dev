@@ -10,9 +10,8 @@ services:
   lldap:
     container_name: ldap
     image: lldap/lldap:stable
-    ports:
-      # For the web front-end
-      - "17170:17170"
+    expose:
+      - "17170"
     volumes:
       - "lldap_data:/data"
     env_file: "../../secrets/LLDAP_ENV_FILE.plain"
