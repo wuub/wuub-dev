@@ -1,10 +1,15 @@
 PLAIN=$(wildcard *.plain)
-SECRET=$(PLAIN:=.gpg)
+ENCRYPT_SECRETS=$(PLAIN:=.gpg)
 
-decrypt:
-	gpg --decrypt --batch --yes --passphrase-file .encryption_password  *.gpg
+DECRYPT_PLAINS=$(wildcard *.gpg)
 
-encrypt: $(SECRET) 
 
-%.plain.gpg: %.plain .encryption_password
+decrypt: $(basename $(DECRYPT_PLAINS)) 
+
+%.plain: %.plain.gpg .encryption_password
+	gpg --batch --yes --passphrase-file .encryption_password  $@.gpg	
+
+encrypt: $(ENCRYPT_SECRETS) 
+
+%.plain.gpg: .encryption_password
 	gpg --symmetric --batch --yes --passphrase-file .encryption_password $(basename $@)
