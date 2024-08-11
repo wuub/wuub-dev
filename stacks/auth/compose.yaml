@@ -18,10 +18,10 @@ services:
     env_file: "../../secrets/LLDAP_ENV_FILE.plain"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.traefik.tls=true"
-      - "traefik.http.routers.traefik.tls.certresolver=le-prod"
-      - "traefik.http.routers.traefik.rule=Host(`auth.wuub.dev`) && PathPrefix(`/ldap`)"
-      - "traefik.http.routers.traefik.entrypoints=websecure"
+      - "traefik.http.routers.auth.tls=true"
+      - "traefik.http.routers.auth.tls.certresolver=le-prod"
+      - "traefik.http.routers.auth.rule=Host(`auth.wuub.dev`) && PathPrefix(`/ldap`)"
+      - "traefik.http.routers.auth.entrypoints=websecure"
     environment:
       - LLDAP_LDAP_BASE_DN=dc=wuub,dc=dev
       - "LLDAP_DATABASE_URL=sqlite:///data/users.db?mode=rwc"
