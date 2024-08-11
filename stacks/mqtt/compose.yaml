@@ -48,10 +48,7 @@ configs:
       persistence true
       persistence_location /mosquitto/data/
   password_file:
-    # cat password_file | sed -e s/\\$/\\$\\$/g 
-    content: |
-      wuub:$$7$$101$$MEQ+36fGbliKMiV+$$6PQ+oOTbfO/BnIjECHZ6QE9Q5cJFG1H9E7mmw4NG4SabNmiw08ao7qPkQYLlb26DHvXKTS3jkMZJlLE9dAoT+g==
-      wiarus:$$7$$101$$/4IOQtCPatN96sDk$$s/L7c5LGHhNnBPHvAkrhGRbsJO8oTKsjeb9ZSIoR9BjQwKeJwIjbUWPRNcdvQvssoUBQtA+25Q7mFvCOeohAzg==
+    file: ../../secrets/MQTT_PASSWORDFILE.plain
 
 
 
