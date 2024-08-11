@@ -25,7 +25,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.auth.tls=true"
       - "traefik.http.routers.auth.tls.certresolver=le-prod"
-      - "traefik.http.routers.auth.rule=Host(`auth.wuub.dev`) && PathPrefix(`/ldap`)"
+      - "traefik.http.routers.auth.rule=Host(`auth.wuub.dev`)"
       - "traefik.http.routers.auth.entrypoints=websecure"
     environment:
       - LLDAP_LDAP_BASE_DN=dc=wuub,dc=dev
