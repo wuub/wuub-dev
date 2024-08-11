@@ -1,6 +1,10 @@
 networks:
   default:
     name: ldap
+  traefik:
+    name: traefik
+    external: true
+
 
 volumes:
   lldap_data:
@@ -15,13 +19,15 @@ services:
     volumes:
       - "lldap_data:/data"
     env_file: "../../secrets/LLDAP_ENV_FILE.plain"
+    networks:
+      - ldap
+      - traefik
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.auth.tls=true"
       - "traefik.http.routers.auth.tls.certresolver=le-prod"
       - "traefik.http.routers.auth.rule=Host(`auth.wuub.dev`)"
       - "traefik.http.routers.auth.entrypoints=websecure"
-      - "traefik.docker.network=ldap"
     environment:
       - LLDAP_LDAP_BASE_DN=dc=wuub,dc=dev
       - "LLDAP_DATABASE_URL=sqlite:///data/users.db?mode=rwc"
