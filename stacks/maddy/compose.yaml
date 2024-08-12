@@ -1,0 +1,26 @@
+services:
+  maddy:
+    image: "foxcpp/maddy:0.7.1"
+    container_name: "maddy"
+    restart: always
+    environment:
+      - "MADDY_HOSTNAME=mx.wuub.dev" 
+      - "MADDY_DOMAIN=wuub.dev" 
+    ports:
+      - "25:25"
+      - "143:143"
+      - "465:465"
+      - "587:587"
+      - "993:993"
+    volumes:
+      - "maddy_data:/data"
+    configs:
+      - source: maddy.conf
+        target: /data/maddy.conf
+
+volumes:
+  maddy_data: 
+
+configs:
+  maddy.conf:
+    file: ./maddy.conf
