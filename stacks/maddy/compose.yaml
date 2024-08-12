@@ -14,6 +14,7 @@ services:
       - "993:993"
     volumes:
       - "maddy_data:/data"
+    env_file: "../../secrets/HETZNER_DNS_ACCESS_TOKEN.plain"
     configs:
       - source: maddy.conf
         target: /data/maddy.conf
@@ -24,3 +25,4 @@ volumes:
 configs:
   maddy.conf:
     file: ./maddy.conf
+
