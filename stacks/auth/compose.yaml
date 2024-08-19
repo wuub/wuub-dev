@@ -21,12 +21,17 @@ services:
     env_file: "../../secrets/LLDAP_ENV_FILE.plain"
     networks:
       - traefik
+      - default
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.auth.tls=true"
       - "traefik.http.routers.auth.tls.certresolver=le-prod"
-      - "traefik.http.routers.auth.rule=Host(`auth.wuub.dev`)"
+      - "traefik.http.routers.auth.rule=Host(`ldap.wuub.dev`)"
       - "traefik.http.routers.auth.entrypoints=websecure"
     environment:
-      - LLDAP_LDAP_BASE_DN=dc=wuub,dc=dev
+      - "LLDAP_LDAP_BASE_DN=dc=wuub,dc=dev"
       - "LLDAP_DATABASE_URL=sqlite:///data/users.db?mode=rwc"
+
+  authelia:
+    image: authelia/authelia
+    container_name: authelia
