@@ -1,10 +1,9 @@
 networks:
-  default:
+  ldap:
     name: ldap
   traefik:
     name: traefik
     external: true
-
 
 volumes:
   lldap_data:
@@ -18,10 +17,11 @@ services:
       - "17170"
     volumes:
       - "lldap_data:/data"
+    restart: always
     env_file: "../../secrets/LLDAP_ENV_FILE.plain"
     networks:
       - traefik
-      - default
+      - ldap
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.auth.tls=true"
@@ -31,7 +31,3 @@ services:
     environment:
       - "LLDAP_LDAP_BASE_DN=dc=wuub,dc=dev"
       - "LLDAP_DATABASE_URL=sqlite:///data/users.db?mode=rwc"
-
-  authelia:
-    image: authelia/authelia
-    container_name: authelia
