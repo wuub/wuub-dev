@@ -1,4 +1,4 @@
 #!/bin/sh
 git --work-tree=/root/wuub-dev --git-dir=/root/wuub-dev.git checkout -f
 cd /root/wuub-dev/secrets && make decrypt
-find /root/wuub-dev/stacks -type f -name compose.yaml -execdir docker compose up --detach \;
+find /root/wuub-dev/stacks -type f -name compose.yaml -execdir docker compose up --detach --remove-orphans \;
