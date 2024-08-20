@@ -28,6 +28,7 @@ services:
       - "traefik.http.routers.auth.tls.certresolver=le-prod"
       - "traefik.http.routers.auth.rule=Host(`ldap.wuub.dev`)"
       - "traefik.http.routers.auth.entrypoints=websecure"
+      - "traefik.docker.network=traefik"
     environment:
       - "LLDAP_LDAP_BASE_DN=dc=wuub,dc=dev"
       - "LLDAP_DATABASE_URL=sqlite:///data/users.db?mode=rwc"
