@@ -1,3 +1,8 @@
+networks:
+  ldap:
+    name: ldap
+    external: true
+
 services:
   maddy:
     image: "foxcpp/maddy:0.7.1"
@@ -16,6 +21,8 @@ services:
       - "maddy_data:/data"
       - "maddy_state:/var/lib/maddy"
     env_file: "../../secrets/HETZNER_DNS_ACCESS_TOKEN.plain"
+    networks:
+      - ldap
     configs:
       - source: maddy.conf
         target: /data/maddy.conf
