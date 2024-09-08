@@ -20,7 +20,9 @@ services:
     volumes:
       - "maddy_data:/data"
       - "maddy_state:/var/lib/maddy"
-    env_file: "../../secrets/HETZNER_DNS_ACCESS_TOKEN.plain"
+    env_file: 
+      - "../../secrets/HETZNER_DNS_ACCESS_TOKEN.plain"
+      - "../../secrets/LDAP_BIND_ENV_FILE.plain"
     networks:
       - ldap
     configs:
