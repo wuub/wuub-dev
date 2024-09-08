@@ -13,3 +13,6 @@ encrypt: $(ENCRYPT_SECRETS)
 
 %.plain.gpg: %.plain .encryption_password
 	gpg --symmetric --batch --yes --passphrase-file .encryption_password $(basename $@)
+
+clean:
+	rm *.plain
